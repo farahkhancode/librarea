@@ -1,0 +1,19 @@
+{
+  "name": "blocipedia-node",
+  "version": "1.0.0",
+  "description": "A Wikipedia-like application for users to share content",
+  "main": "src/server.js",
+  "scripts": {
+    "test": " export NODE_ENV=test && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/farahkhancode/blocipedia-node.git"
+  },
+  "author": "Farah Ahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/farahkhancode/blocipedia-node/issues"
+  },
+  "homepage": "https://github.com/farahkhancode/blocipedia-node#readme"
+}
