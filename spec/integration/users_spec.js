@@ -64,6 +64,9 @@ describe("routes : users", () => {
         );
       });
 
+
+
+
      it ("should create a hashed password", (done) => {
        const options = {
          url: `${base}signup`,
@@ -82,7 +85,7 @@ describe("routes : users", () => {
                 expect(user).not.toBeNull();
                 expect(user.email).toBe("user@example.com");
                 expect(user.id).toBe(1);
-                expect(user.password).not.toBe("1234567890");
+                expect(user.password).not.toBe("123456789");
                 done();
               })
               .catch((err) => {
@@ -118,6 +121,8 @@ describe("routes : users", () => {
       });
 
     });
+
+  
 
 
 
