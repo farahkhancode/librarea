@@ -7,7 +7,6 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 module.exports = {
 // #2
   createUser(newUser, callback){
-
 // #3
     const salt = bcrypt.genSaltSync();
     const hashedPassword = bcrypt.hashSync(newUser.password, salt);

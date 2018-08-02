@@ -30,5 +30,6 @@ module.exports = {
         res.locals.currentUser = req.user;
         next();
    })
+   
   }
 };
