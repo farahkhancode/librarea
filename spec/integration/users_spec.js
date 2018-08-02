@@ -22,7 +22,7 @@ describe("routes : users", () => {
   describe("GET /users/signup", () => {
 
     it("should render a view with a sign up form", (done) => {
-      request.get(`${base}sign_up`, (err, res, body) => {
+      request.get(`${base}signup`, (err, res, body) => {
         expect(err).toBeNull();
         expect(body).toContain("Sign Up");
         done();
@@ -122,7 +122,17 @@ describe("routes : users", () => {
 
     });
 
-  
+    describe("GET /users/signin", () => {
+         it("should render a view with a sign in form", (done) => {
+           request.get(`${base}signin`, (err, res, body) => {
+             expect(err).toBeNull();
+             expect(body).toContain("Sign In");
+             done();
+           });
+         });
+
+       });
+
 
 
 
