@@ -51,6 +51,7 @@ describe("routes : wikis", () => {
             expect(res.statusCode).toBe(200);
             expect(err).toBeNull();
             expect(body).toContain("Wikis");
+            expect(body).toContain("Benefits of turmeric");
             done();
           });
         });

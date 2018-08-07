@@ -3,12 +3,12 @@
 
 module.exports = {
 
-  index(req, res, next){
+index(req, res, next){
       wikiQueries.getAllWikis((err, wikis) => {
           if(err){
               res.redirect(500, "static/index");
           } else {
-              res.redirect("wikis/index", {wikis});
+              res.render("wikis/index", {wikis});
           }
       });
   },
