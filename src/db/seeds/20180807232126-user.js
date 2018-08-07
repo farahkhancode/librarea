@@ -12,6 +12,7 @@ let users = [{
   updatedAt: new Date(),
   role: "standard"
 },
+
 {
 id: 2,
 username: "yusufkhan",
