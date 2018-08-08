@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
 
 module.exports = {
-  
+
   init(app, express){
 
      app.set("views", viewsFolder);
@@ -22,7 +22,7 @@ module.exports = {
         secret: process.env.cookieSecret || 'asdfdsf',
         resave: false,
         saveUninitialized: false,
-        cookie: { maxAge: 1.21e+9 } //set cookie to expire in 14 days
+        cookie: {maxAge: 1.21e+9} //set cookie to expire in 14 days
      }));
      app.use(flash());
      passportConfig.init(app);
@@ -31,6 +31,6 @@ module.exports = {
         res.locals.currentUser = req.user;
         next();
    })
-   
+
   }
 };

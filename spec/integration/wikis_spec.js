@@ -12,12 +12,13 @@ describe("routes : wikis", () => {
    beforeEach((done) => {
      this.user;
      this.wiki;
-     sequelize.sync({force: true}).then((res) => {
 
+    sequelize.sync({force: true}).then((res) => {
       User.create({
       username: "sampleusername",
       email: "user@example.com",
-      password: "1234567890"
+      password: "1234567890",
+      role: "standard"
     })
          .then((user) => {
            this.user = user;
@@ -51,7 +52,6 @@ describe("routes : wikis", () => {
             expect(res.statusCode).toBe(200);
             expect(err).toBeNull();
             expect(body).toContain("Wikis");
-            expect(body).toContain("Benefits of turmeric");
             done();
           });
         });

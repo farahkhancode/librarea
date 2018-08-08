@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../static/partials/head.ejs %>
+    </head>
+    <body>
+        <% include ../static/partials/navbar.ejs %>
+
+        <main class="container">
+            <% include ../static/partials/messages.ejs %>
+
+            <% if(currentUser && currentUser.role == "standard") { %>
+             <h1>Join Blocipedia as a premium member.</h1>
+             <ul>
+		          	<li>Create private wikis and collaborate with other premium members.</li>
+		         </ul>
+
+       	     <form action="/users/<%=currentUser.id%>/upgrade" method="POST">
+                	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    			    data-key="pk_test_SjAYF5oiBj2D9Lvu09xUuZAu"
+    			    data-amount="1500"
+    			    data-name="Demo Site"
+    			    data-description="Blocipedia Premium Membership"
+    			    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    			    data-locale="auto">
+                	</script>
+            	</form>
+            <% } else { %>
+              <% if(currentUser.role === "premium"); { %>
+            	<h1>Are you sure you want to downgrade from our premium membership?</h1>
+
+            	<form action="/users/<%=currentUser.id%>/downgrade" method="POST">
+                	<button type="submit" class="btn btn-danger">Downgrade your membership</button>
+            	</form>
+       	      <% } %>
+       	    <% } %>
+        </main>
+        <% include ../static/partials/baseScripts.ejs %>
+    </body>
+</html>
