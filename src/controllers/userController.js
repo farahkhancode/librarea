@@ -3,7 +3,7 @@ const passport = require("passport");
 
 const secretKey = process.env.SECRET_KEY;
 const publishableKey = process.env.PUBLISHABLE_KEY;
-const stripe = require("stripe")(secretKey);
+const stripe = require('../config/stripe-config.js');
 
 module.exports = {
   index(req, res, next){

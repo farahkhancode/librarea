@@ -1,1 +1,1 @@
-module.exports = require('stripe')('pk_test_SjAYF5oiBj2D9Lvu09xUuZAu');
+module.exports = require('stripe')('sk_test_QQL1gerjep6l3nqrh2pLEx10');
