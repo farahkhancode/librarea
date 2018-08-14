@@ -50,7 +50,9 @@ module.exports = {
          callback(err);
      })
  },
+
  
+
  privateToPublic(id){
      return Wiki.all()
      .then((wikis) => {

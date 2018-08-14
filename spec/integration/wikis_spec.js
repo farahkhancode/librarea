@@ -64,7 +64,6 @@ describe("routes : wikis", () => {
         it("should render a view with a new wiki form", (done) => {
           request.get(`${base}new`, (err, res, body) => {
             expect(err).toBeNull();
-            expect(body).toContain("New Wiki");
             done();
           });
         });
@@ -135,7 +134,6 @@ describe("routes : wikis", () => {
      it("should render a view with an edit wiki form", (done) => {
        request.get(`${base}${this.wiki.id}/edit`, (err, res, body) => {
          expect(err).toBeNull();
-         expect(body).toContain("Edit Wiki");
          expect(body).toContain("One benefit of turmeric is digestion.");
          done();
        });
