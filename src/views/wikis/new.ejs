@@ -24,13 +24,14 @@
           <small class="text-muted" id="bodyHelp">body must be 10 or more characters in length.</small>
         </div>
         <div class="form-group">
+         <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
           <label for="private">Would you like to make this a private wiki?</label>
           <select class="form-control" name="private">
             <option value='false'>Public</option>
             <option value='true'>Private</option>
           </select>
         </div>
-
+         <% }%>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 

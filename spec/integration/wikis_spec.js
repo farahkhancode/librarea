@@ -1,4 +1,3 @@
-
 const request = require("request");
 const server = require("../../src/server");
 const base = "http://localhost:3000/wikis/";
@@ -8,7 +7,7 @@ const User = require("../../src/db/models").User;
 
 describe("routes : wikis", () => {
 
-//member user context
+//upgraded member user context
    beforeEach((done) => {
      this.user;
      this.wiki;
@@ -18,13 +17,14 @@ describe("routes : wikis", () => {
       username: "sampleusername",
       email: "user@example.com",
       password: "1234567890",
-      role: "standard"
+      role: "premium"
     })
          .then((user) => {
            this.user = user;
             request.get({
                   url: "http://localhost:3000/auth/fake",
                   form: {
+                    role: user.role,
                     userId: user.id,
                     email: user.email
               }
@@ -37,19 +37,22 @@ describe("routes : wikis", () => {
            .then((wiki) => {
              this.wiki = wiki;
              done();
-           });
-         })
+           })
          .catch((err) => {
            console.log(err);
            done();
-         });
-       });
-     });
+         })
+       })
+       .catch((err) => {
+       console.log(err);
+       done();
+     })
+   });
+ });
 
-    describe("GET /wikis", () => {
-        it("should render a view with a all wikis and status code 200", (done) => {
-          request.get(base, (err, res, body) => {
-            expect(res.statusCode).toBe(200);
+    describe("GET /wikis/", () => {
+        it("should render a view of wiki index page", (done) => {
+          request.get(`${base}private`, (err, res, body) => {
             expect(err).toBeNull();
             expect(body).toContain("Wikis");
             done();
@@ -72,18 +75,18 @@ describe("routes : wikis", () => {
        const options = {
          url: `${base}create`,
          form: {
-           title: "blink-182 songs",
-           body: "What's your favorite blink-182 song?",
+           title: "Wiki2 title",
+           body: "Wiki2 body",
            private: true,
            userId: this.user.id
          }
        };
        request.post(options,
          (err, res, body) => {
-           Wiki.findOne({where: {title: "blink-182 songs"}})
+           Wiki.findOne({where: {title: "Wiki2 title"}})
           .then((wiki) => {
-            expect(wiki.title).toBe("blink-182 songs");
-            expect(wiki.body).toBe("What's your favorite blink-182 song?");
+            expect(wiki.title).toBe("Wiki2 title");
+            expect(wiki.body).toBe("Wiki2 body");
             done();
           })
           .catch((err) => {

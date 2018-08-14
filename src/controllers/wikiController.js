@@ -23,6 +23,16 @@ index(req, res, next){
        }
      },
 
+ privateIndex(req, res, next){
+         wikiQueries.getAllWikis((err, wikis) => {
+             if(err){
+                 res.redirect(500, "static/index");
+             } else {
+                 res.render("wikis/private", {wikis});
+             }
+         })
+     },
+
   create(req, res, next){
    const authorized = new Authorizer(req.user).create();
 

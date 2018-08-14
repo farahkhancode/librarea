@@ -50,6 +50,22 @@ module.exports = {
          callback(err);
      })
  },
+ 
+ privateToPublic(id){
+     return Wiki.all()
+     .then((wikis) => {
+         wikis.forEach((wiki) => {
+             if(wiki.userId == id && wiki.private == true){
+                 wiki.update({
+                     private: false
+                 })
+             }
+         })
+     })
+     .catch((err) => {
+         callback(err);
+     })
+ },
 
  updateWiki(id, updatedWiki, callback){
      return Wiki.findById(id)
