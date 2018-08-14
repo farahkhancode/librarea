@@ -79,7 +79,7 @@ module.exports = {
   })
   .then((charge) => {
     userQueries.upgrade(req.user.dataValues.id);
-    res.render("users/payment_success");
+    res.render("users/successfulpayment");
   })
 },
 
