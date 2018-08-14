@@ -15,6 +15,7 @@ index(req, res, next){
       });
   },
 
+
   new(req, res, next){
        const authorized = new Authorizer(req.user).new();
        if(authorized){
@@ -63,6 +64,7 @@ index(req, res, next){
              if(err || wiki == null){
                  res.redirect(404, "/");
              } else {
+                 wiki.body = markdown.toHTML(wiki.body);
                  res.render("wikis/show", {wiki});
              }
          });
