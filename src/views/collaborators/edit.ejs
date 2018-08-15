@@ -17,7 +17,7 @@
       <ul class ="list-group">
         <% collaborators.forEach((collaborator) => {  %>
             <li class="list-group-item">
-                  <%= collaborator.User.name %>
+                  <%= collaborator.User.username %>
                   <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
                     <form action="/wikis/<%= wiki.id %>/collaborators/remove" method="post">
                       <button type="submit" class="btn btn-danger">Remove</button>

@@ -11,7 +11,7 @@ module.exports = {
             if(err){
                 req.flash("error", err);
             }
-            res.redirect(req.headers.referrer);
+            res.redirect(`/wikis/${req.params.wikiId}/collaborators`);
         });
     },
 
@@ -19,6 +19,7 @@ module.exports = {
         wikiQueries.getWiki(req.params.wikiId, (err, result) => {
             wiki = result["wiki"];
             collaborators = result["collaborators"];
+            console.log(collaborators[0].User);
             if(err || wiki == null){
                 res.redirect(404, "/");
             } else {
