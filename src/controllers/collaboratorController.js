@@ -16,23 +16,23 @@ module.exports = {
     },
 
     edit(req, res, next){
-        wikiQueries.getWiki(req.params.wikiId, (err, result) => {
-            wiki = result["wiki"];
-            collaborators = result["collaborators"];
-            console.log(collaborators[0].User);
-            if(err || wiki == null){
-                res.redirect(404, "/");
-            } else {
-                const authorized = new Authorizer(req.user, wiki, collaborators).edit();
-                if(authorized){
-                    res.render("collaborators/edit", {wiki, collaborators});
-                } else {
-                    req.flash("You are not authorized to do that.");
-                    res.redirect(`/wikis/${req.params.wikiId}`);
-                }
-            }
-        });
-    },
+      wikiQueries.getWiki(req.params.wikiId, (err, result) => {
+          if(err || result == null){
+              res.redirect(404, "/");
+          } else {
+              wiki = result["wiki"];
+              collaborators = result["collaborators"];
+              console.log(collaborators[0].User);
+              const authorized = new Authorizer(req.user, wiki, collaborators).edit();
+              if(authorized){
+                  res.render("collaborators/edit", {wiki, collaborators});
+              } else {
+                  req.flash("You are not authorized to do that.");
+                  res.redirect(`/wikis/${req.params.wikiId}`);
+              }
+          }
+      });
+  },
 
     remove(req, res, next){
         if(req.user){
