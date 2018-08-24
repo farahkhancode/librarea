@@ -15,14 +15,16 @@ module.exports = {
         });
     },
 
+
+
     edit(req, res, next){
       wikiQueries.getWiki(req.params.wikiId, (err, result) => {
           if(err || result == null){
+            console.log(err);
               res.redirect(404, "/");
           } else {
               wiki = result["wiki"];
               collaborators = result["collaborators"];
-              console.log(collaborators[0].User);
               const authorized = new Authorizer(req.user, wiki, collaborators).edit();
               if(authorized){
                   res.render("collaborators/edit", {wiki, collaborators});
@@ -40,7 +42,7 @@ module.exports = {
                 if(err){
                     req.flash("error", err);
                 }
-                res.redirect(req.headers.referrer);
+              res.redirect(`/wikis/${req.params.wikiId}`);
             });
         } else {
             req.flash("notice", "You must be signed in to remove Collaborators!");

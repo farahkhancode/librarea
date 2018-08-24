@@ -30,6 +30,7 @@
     </p>
     <% } %>
     <% if(currentUser && (currentUser.role === "premium" || currentUser.role === "admin")) { %>
+    
       <form action="/wikis/<%= wiki.id %>/collaborators/add" method="post">
         <div class="input-group">
           <input type="text" class="form-control" name="collaborator" placeholder="Enter username">

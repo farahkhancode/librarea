@@ -28,10 +28,12 @@
          <button type="submit" class="btn btn-primary">Update</button>
 
         <% if (currentUser && (currentUser.role === 'admin' || (currentUser.role === 'premium' && currentUser.id === wiki.userId))){%>
+          <form action="/wikis/<%= wiki.id %>/collaborators" method="post">
           <a href='/wikis/<%= wiki.id %>/collaborators' class="btn btn-info">Edit Collaborators</a>
+          </form>
        <% }%>
 
-        
+
       </form>
     </main>
 
